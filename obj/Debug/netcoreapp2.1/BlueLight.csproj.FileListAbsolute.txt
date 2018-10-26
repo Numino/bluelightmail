@@ -1,0 +1,14 @@
+D:\code\codeweavershackpad\willy\bluelightmail\bin\Debug\netcoreapp2.1\BlueLight.deps.json
+D:\code\codeweavershackpad\willy\bluelightmail\bin\Debug\netcoreapp2.1\BlueLight.runtimeconfig.json
+D:\code\codeweavershackpad\willy\bluelightmail\bin\Debug\netcoreapp2.1\BlueLight.runtimeconfig.dev.json
+D:\code\codeweavershackpad\willy\bluelightmail\bin\Debug\netcoreapp2.1\BlueLight.dll
+D:\code\codeweavershackpad\willy\bluelightmail\bin\Debug\netcoreapp2.1\BlueLight.pdb
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.csprojAssemblyReference.cache
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.csproj.CoreCompileInputs.cache
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.RazorAssemblyInfo.cache
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.RazorAssemblyInfo.cs
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.AssemblyInfoInputs.cache
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.AssemblyInfo.cs
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.RazorTargetAssemblyInfo.cache
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.dll
+D:\code\codeweavershackpad\willy\bluelightmail\obj\Debug\netcoreapp2.1\BlueLight.pdb

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\developer\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_bluelightmail.-236931976.00" t="ExcludeRecursive" />
+    <e p="D:\code\codeweavershackpad\willy\bluelightmail" t="IncludeRecursive">
+      <e p="Api" t="Include">
+        <e p="Email" t="Include">
+          <e p="EmailController.cs" t="Include" />
+        </e>
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="BlueLight.csproj" t="IncludeRecursive" />
+      <e p="bluelightmail.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.1" t="Include">
+            <e p="BlueLight.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="Todo.txt" t="Include" />
+    </e>
+  </component>
+</project>

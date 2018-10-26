@@ -1,0 +1,123 @@
+Create and update tasks
+Create and update users
+Create and update tags
+
+sub tasks!
+
+assign users to task
+comments add delete later
+files
+commits
+
+
+time tracking
+
+landing page recent activity, bespoke if you have selected users
+
+file archive database, cloud/other dev machines 
+
+
+https://codeweavers.atlassian.net/secure/QuickCreateIssue!default.jspa?decorator=none
+https://codeweavers.atlassian.net/rest/api/2/field?_r=1531840399032
+
+https://codeweavers.atlassian.net/rest/api/latest/user/assignable/search?username=&projectKeys=SHOW&issueKey=SHOW-16&maxResults=50&startAt=0&_=1531840452240
+
+https://codeweavers.atlassian.net/rest/api/2/issue/CW-575/editmeta
+
+ public void MoveTaskBefore(string taskBeforeId, TaskRecord taskToMove, HashSet<string> allowedTags)
+        {
+            lock(thisLock)
+            {
+                var taskList = _statusToTaskList[taskToMove.Status];
+
+                if(taskBeforeId == "end")
+                {
+                    taskList.Remove(taskToMove);
+                    taskToMove.GlobalOrder = taskList.Count + 1;
+                    taskList.Add(taskToMove);
+                    Update(taskToMove);
+                    return;
+                }
+
+                var allowedTasks = new List<TaskRecord>();
+                if(allowedTags.Contains("All"))
+                    allowedTasks = taskList;
+                else
+                {
+                    foreach(var task in _statusToTaskList[taskToMove.Status])
+                    {
+                        if(allowedTags.IsSubsetOf(task.Tags))
+                            allowedTasks.Add(task);
+                    }
+                }
+
+                var taskBefore = RetrieveByIdentifier(taskBeforeId);
+                var originalTaskPosition = taskToMove.GlobalOrder;
+                var targetTaskPosition = taskBefore.GlobalOrder;
+
+                for(var i = 0; i < allowedTasks.Count; i++)
+                {
+                    var allowedTask = allowedTasks[i];
+                    if(allowedTask.Id == taskToMove.Id)
+                    {
+                        allowedTask.GlobalOrder = targetTaskPosition;
+                        allowedTasks[i - 1].GlobalOrder = originalTaskPosition;
+                        break;
+                    }
+                    allowedTask.GlobalOrder = allowedTasks[i + 1].GlobalOrder;
+                }
+
+                _statusToTaskList[taskToMove.Status] = taskList.OrderBy(x => x.GlobalOrder).ToList();
+            }
+        }
+        
+        
+          public void ChangeTaskStatus(TasksStatus newStatusId, TaskRecord updatingTask, HashSet<string> allowedTags)
+                {
+                    lock(thisLock)
+                    {
+                        _statusToTaskList[updatingTask.Status].Remove(updatingTask);
+        
+                        updatingTask.GlobalOrder = _statusToTaskList[newStatusId].Count + 1;
+        
+                        var allowedTasks = new List<TaskRecord>();
+                        if(allowedTags.Contains("All"))
+                            allowedTasks = _statusToTaskList[newStatusId];
+                        else
+                        {
+                            foreach(var task in _statusToTaskList[newStatusId])
+                            {
+                                if(allowedTags.IsSubsetOf(task.Tags))
+                                    allowedTasks.Add(task);
+                            }
+                        }
+        
+                        if(allowedTasks.Any())
+                        {
+                            var updatingTaskGlobalOrder = updatingTask.GlobalOrder;
+        
+                            updatingTask.GlobalOrder = allowedTasks.First().GlobalOrder;
+                            allowedTasks.Last().GlobalOrder = updatingTaskGlobalOrder;
+        
+                            for(var i = 0; i < allowedTasks.Count; i++)
+                            {
+                                var task = allowedTasks[i];
+                                if(i < allowedTasks.Count - 1)
+                                    task.GlobalOrder = allowedTasks[i + 1].GlobalOrder;
+                                Update(task);
+                            }
+                        }
+        
+                        _statusToTaskList[newStatusId].Add(updatingTask);
+                        _statusToTaskList[newStatusId] = _statusToTaskList[newStatusId].OrderBy(x => x.GlobalOrder).ToList();
+                    }
+                }
+                
+                
+                
+ else if (request.CardBeforeId != null)
+            {
+                _taskRepository.MoveTaskBefore(request.CardBeforeId, taskRecord, allowedTags);
+                if (request.CardBeforeId != "end" && taskRecord.JiraData != null)
+                    _jiraRepository.RankIssuesBefore(request.CardBeforeId, new List<string> {taskRecord.Identifier});
+            }
